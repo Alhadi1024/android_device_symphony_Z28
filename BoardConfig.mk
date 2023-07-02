@@ -76,14 +76,12 @@ BOARD_SYMPHONY_DYNAMIC_PARTITIONS_SIZE := 2649254676
 # Platform
 TARGET_BOARD_PLATFORM := mt6765
 
-# Properties
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/recovery/root/prop.default
 
 TW_INCLUDE_FASTBOOTD := true
 
 
 # Recovery
-#TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
+#TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 BOARD_INCLUDE_RECOVERY_DTBO := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
