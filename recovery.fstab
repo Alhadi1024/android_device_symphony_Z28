@@ -1,6 +1,8 @@
-/system                   ext4     system                                                     flags=display=system;logical
-/vendor                   ext4     vendor                                                     flags=display=vendor;logical
-/product                  ext4     product                                                    flags=display=product;logical
+/super                    ext4     /dev/block/platform/by-name/super                          flags=display=super
+/                         ext4     /dev/block/dm-1                                            flags=display=root:logical
+/system                   ext4     /dev/block/dm-1                                            flags=display=system;logical
+/vendor                   ext4     /dev/block/dm-2                                            flags=display=vendor;logical
+/product                  ext4     /dev/block/dm-0                                            flags=display=product;logical
 /metadata                 ext4     /dev/block/platform/bootdevice/by-name/md_udc              flags=display=metadata
 /data                     f2fs     /dev/block/platform/bootdevice/by-name/userdata            flags=display=data
 /cache                    ext4     /dev/block/platform/bootdevice/by-name/cache               flags=display=cache
@@ -40,3 +42,6 @@ auto                      vfat     /devices/platform/mt_usb*                    
 /odmdtbo                  emmc     /dev/block/platform/bootdevice/by-name/odmdtbo             flags=display=odmdtbo
 /dtbo                     emmc     /dev/block/platform/bootdevice/by-name/dtbo                flags=display=dtbo
 /vbmeta                   emmc     /dev/block/platform/bootdevice/by-name/vbmeta              flags=display=vbmeta
+/storage                  tmpfs    tmpfs                                                      flags=display=storage:logical
+/storage/emulated         sdcardfs  /data/media                                               flags=display=internel_storage: logical
+/storage/00BB-1A03        sdcardfs  /mnt/media_rw/00BB-1A03                                   flags=display=sdcard:logical
