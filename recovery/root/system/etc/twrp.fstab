@@ -1,11 +1,14 @@
-/                         ext4     /dev/block/dm-1                                            flags=display=root;logical
-/system_root              ext4     /dev/block/dm-1                                            flags=display=root;logical
+/                         ext4     /dev/block/dm-1                                            flags=display=root
+/system_root              ext4     /dev/block/dm-1                                            flags=display=root
 /system                   ext4     /dev/block/dm-1                                            flags=display=system;logical
 /vendor                   ext4     /dev/block/dm-2                                            flags=display=vendor;logical
+/vendor_root             ext4     /dev/block/dm-2                                            flags=display=vendor_root
 /product                  ext4     /dev/block/dm-0                                            flags=display=product;logical
+/product_root             ext4     /dev/block/dm-0                                            flags=display=product_rot
 /metadata                 ext4     /dev/block/platform/bootdevice/by-name/md_udc              flags=display=metadata
 /data                     f2fs     /dev/block/platform/bootdevice/by-name/userdata            flags=display=data
 /cache                    ext4     /dev/block/platform/bootdevice/by-name/cache               flags=display=cache
+/mnt                       tmpfs
 /mnt/vendor/protect_f     ext4     /dev/block/platform/bootdevice/by-name/protect1            flags=display=protect_f
 /mnt/vendor/protect_s     ext4     /dev/block/platform/bootdevice/by-name/protect2            flags=display=protect_s
 /mnt/vendor/nvdata        ext4     /dev/block/platform/bootdevice/by-name/nvdata              flags=display=nvdata
@@ -43,5 +46,5 @@ auto                      vfat     /devices/platform/mt_usb*                    
 /dtbo                     emmc     /dev/block/platform/bootdevice/by-name/dtbo                flags=display=dtbo
 /vbmeta                   emmc     /dev/block/platform/bootdevice/by-name/vbmeta              flags=display=vbmeta
 /storage                  auto     tmpfs                                                      flags=display=storage;logical
-/storage/emulated         auto     /data/media                                               flags=display=internel_storage;logical
-/storage/00BB-1A03        auto     /mnt/media_rw/00BB-1A03                                   flags=display=sdcard;logical
+/storage/emulated/0      auto     /data/media/0                                               flags=display=internel_storage
+/storage/00BB-1A03       sdcardfs   /mnt/media_rw/00BB-1A03                                   flags=display=external
