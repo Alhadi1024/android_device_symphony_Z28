@@ -1,5 +1,5 @@
-/super                    ext4     /dev/block/platform/by-name/super                          flags=display=super
-/                         ext4     /dev/block/dm-1                                            flags=display=root:logical
+/                         ext4     /dev/block/dm-1                                            flags=display=root;logical
+/system_root              ext4     /dev/block/dm-1                                            flags=display=root;logical
 /system                   ext4     /dev/block/dm-1                                            flags=display=system;logical
 /vendor                   ext4     /dev/block/dm-2                                            flags=display=vendor;logical
 /product                  ext4     /dev/block/dm-0                                            flags=display=product;logical
@@ -42,6 +42,6 @@ auto                      vfat     /devices/platform/mt_usb*                    
 /odmdtbo                  emmc     /dev/block/platform/bootdevice/by-name/odmdtbo             flags=display=odmdtbo
 /dtbo                     emmc     /dev/block/platform/bootdevice/by-name/dtbo                flags=display=dtbo
 /vbmeta                   emmc     /dev/block/platform/bootdevice/by-name/vbmeta              flags=display=vbmeta
-/storage                  tmpfs    tmpfs                                                      flags=display=storage:logical
-/storage/emulated         sdcardfs  /data/media                                               flags=display=internel_storage: logical
-/storage/00BB-1A03        sdcardfs  /mnt/media_rw/00BB-1A03                                   flags=display=sdcard:logical
+/storage                  auto     tmpfs                                                      flags=display=storage;logical
+/storage/emulated         auto     /data/media                                               flags=display=internel_storage;logical
+/storage/00BB-1A03        auto     /mnt/media_rw/00BB-1A03                                   flags=display=sdcard;logical
