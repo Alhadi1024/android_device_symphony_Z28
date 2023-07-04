@@ -1,14 +1,19 @@
+#partition                #type           #path                                                  #flags
 /                         ext4     /dev/block/dm-1                                            flags=display=root
-/system_root              ext4     /dev/block/dm-1                                            flags=display=root
+/super                    ext4     /dev/block/platform/bootdevice/by-name/super               flags=display=super
+/system_root              ext4     /dev/block/dm-1                                            flags=display=system_root
 /system                   ext4     /dev/block/dm-1                                            flags=display=system;logical
+/system_root              ext4     /dev/block/mapper/system                                   flags=display=system2
 /vendor                   ext4     /dev/block/dm-2                                            flags=display=vendor;logical
-/vendor_root             ext4     /dev/block/dm-2                                            flags=display=vendor_root
+/vendor_root              ext4     /dev/block/dm-2                                            flags=display=vendor_root
+/vendor_root              ext4     /dev/block/mapper/vendor                                   flags=display=vendor_root2
+/vendor                   ext4     /dev/block/mapper/vendor                                   flags=display=vendor2
 /product                  ext4     /dev/block/dm-0                                            flags=display=product;logical
-/product_root             ext4     /dev/block/dm-0                                            flags=display=product_rot
+/product_root             ext4     /dev/block/dm-0                                            flags=display=product_root
 /metadata                 ext4     /dev/block/platform/bootdevice/by-name/md_udc              flags=display=metadata
-/data                     f2fs     /dev/block/platform/bootdevice/by-name/userdata            flags=display=data
+/data                     f2fs     /dev/block/platform/bootdevice/by-name/userdata            flags=fileencryption=aes-256-cts
 /cache                    ext4     /dev/block/platform/bootdevice/by-name/cache               flags=display=cache
-/mnt                       tmpfs
+/mnt                      tmpfs
 /mnt/vendor/protect_f     ext4     /dev/block/platform/bootdevice/by-name/protect1            flags=display=protect_f
 /mnt/vendor/protect_s     ext4     /dev/block/platform/bootdevice/by-name/protect2            flags=display=protect_s
 /mnt/vendor/nvdata        ext4     /dev/block/platform/bootdevice/by-name/nvdata              flags=display=nvdata
@@ -45,6 +50,8 @@ auto                      vfat     /devices/platform/mt_usb*                    
 /odmdtbo                  emmc     /dev/block/platform/bootdevice/by-name/odmdtbo             flags=display=odmdtbo
 /dtbo                     emmc     /dev/block/platform/bootdevice/by-name/dtbo                flags=display=dtbo
 /vbmeta                   emmc     /dev/block/platform/bootdevice/by-name/vbmeta              flags=display=vbmeta
-/storage                  auto     tmpfs                                                      flags=display=storage;logical
-/storage/emulated/0      auto     /data/media/0                                               flags=display=internel_storage
-/storage/00BB-1A03       sdcardfs   /mnt/media_rw/00BB-1A03                                   flags=display=external
+/storage                  tmpfs                                                               flags=display=storage
+/storage/emulated/0       auto     /data/media/0                                              flags=display=internel_storage
+/storage/00BB-1A03        sdcardfs /mnt/media_rw/00BB-1A03                                    flags=display=external
+/external_sd              auto     /dev/block/mmcblk1p1  /dev/block/mmcblk1                   flags=display="External_SDcard";storage;wipeingui;removable;fsflags="utf8"
+/usbotg                   auto     /dev/block/sda1  /dev/block/sda                            flags=display="Usb_Otg";storage;wipeingui;removable;fsflags="utf8"          
