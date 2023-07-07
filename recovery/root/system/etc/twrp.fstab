@@ -1,15 +1,20 @@
-#partition                #type           #path                                                  #flags
-/                         ext4     /dev/block/dm-1                                            flags=display=root
-/super                    ext4     /dev/block/platform/bootdevice/by-name/super               flags=display=super
+#partition             #fstype      #mountpoint                                                  #flags
+
+#Dynamic Partition 
 /system_root              ext4     /dev/block/dm-1                                            flags=display=system_root
 /system                   ext4     /dev/block/dm-1                                            flags=display=system;logical
-/system_root              ext4     /dev/block/mapper/system                                   flags=display=system2
-/vendor                   ext4     /dev/block/dm-2                                            flags=display=vendor;logical
-/vendor_root              ext4     /dev/block/dm-2                                            flags=display=vendor_root
-/vendor_root              ext4     /dev/block/mapper/vendor                                   flags=display=vendor_root2
-/vendor                   ext4     /dev/block/mapper/vendor                                   flags=display=vendor2
+/vendor                   ext4     /dev/block/dm-2                                            flags=display=vendor;logical             
 /product                  ext4     /dev/block/dm-0                                            flags=display=product;logical
-/product_root             ext4     /dev/block/dm-0                                            flags=display=product_root
+
+/system		    ext4	/dev/block/mapper/system      flags=backup=1;display="System ext4"
+/vendor             ext4        /dev/block/mapper/vendor      flags=backup=1;display="Vendor ext4"
+/product            ext4        /dev/block/mapper/product     flags=backup=1;display="Product ext4"
+# /system_image	    emmc	/dev/block/mapper/system    flags=backup=1;display="System Image";flashimg=1
+# /vendor_image	    emmc	/dev/block/mapper/vendor    flags=backup=1;display="Vendor Image";flashimg=1
+# /product_image	    emmc	/dev/block/mapper/product   flags=backup=1;display="Product Image";flashimg=1
+
+# /super          emmc    /dev/block/platform
+                          
 /metadata                 ext4     /dev/block/platform/bootdevice/by-name/md_udc              flags=display=metadata
 /data                     f2fs     /dev/block/platform/bootdevice/by-name/userdata            flags=fileencryption=aes-256-cts
 /cache                    ext4     /dev/block/platform/bootdevice/by-name/cache               flags=display=cache
@@ -49,9 +54,6 @@ auto                      vfat     /devices/platform/mt_usb*                    
 /boot_para                emmc     /dev/block/platform/bootdevice/by-name/boot_para           flags=display=boot_para
 /odmdtbo                  emmc     /dev/block/platform/bootdevice/by-name/odmdtbo             flags=display=odmdtbo
 /dtbo                     emmc     /dev/block/platform/bootdevice/by-name/dtbo                flags=display=dtbo
-/vbmeta                   emmc     /dev/block/platform/bootdevice/by-name/vbmeta              flags=display=vbmeta
-/storage                  tmpfs                                                               flags=display=storage
-/storage/emulated/0       auto     /data/media/0                                              flags=display=internel_storage
-/storage/00BB-1A03        sdcardfs /mnt/media_rw/00BB-1A03                                    flags=display=external
+/vbmeta                   emmc     /dev/block/platform/bootdevice/by-name/vbmeta              flags=display=vbmeta                     
 /external_sd              auto     /dev/block/mmcblk1p1  /dev/block/mmcblk1                   flags=display="External_SDcard";storage;wipeingui;removable;fsflags="utf8"
 /usbotg                   auto     /dev/block/sda1  /dev/block/sda                            flags=display="Usb_Otg";storage;wipeingui;removable;fsflags="utf8"          
