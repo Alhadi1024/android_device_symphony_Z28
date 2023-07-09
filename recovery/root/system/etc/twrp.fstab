@@ -16,7 +16,7 @@
 # /super          emmc    /dev/block/platform
                           
 /metadata                 ext4     /dev/block/platform/bootdevice/by-name/md_udc              flags=display=metadata
-/data                     f2fs     /dev/block/platform/bootdevice/by-name/userdata            flags=noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065 wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=fs,fileencryption=aes-256-xts
+/data                     f2fs     /dev/block/platform/bootdevice/by-name/userdata            flags=data=fileencryption=aes-256-xts
 /cache                    ext4     /dev/block/platform/bootdevice/by-name/cache               flags=display=cache
 /mnt                      auto
 /mnt/vendor/protect_f     ext4     /dev/block/platform/bootdevice/by-name/protect1            flags=display=protect_f
