@@ -56,4 +56,14 @@ auto                      vfat     /devices/platform/mt_usb*                    
 /dtbo                     emmc     /dev/block/platform/bootdevice/by-name/dtbo                flags=display=dtbo
 /vbmeta                   emmc     /dev/block/platform/bootdevice/by-name/vbmeta              flags=display=vbmeta                     
 /external_sd              auto     /dev/block/mmcblk1p1  /dev/block/mmcblk1                   flags=display="External_SDcard";storage;wipeingui;removable;fsflags="utf8"
-/usbotg                   auto     /dev/block/sda1  /dev/block/sda                            flags=display="Usb_Otg";storage;wipeingui;removable;fsflags="utf8"          
+/usbotg                   auto     /dev/block/sda1  /dev/block/sda                            flags=display="Usb_Otg";storage;wipeingui;removable;fsflags="utf8" 
+/persist         ext4    /dev/block/platform/bootdevice/by-name/persist            flags=backup=1;display="Persist"
+/persist_image   emmc    /dev/block/platform/bootdevice/by-name/persist            flags=backup=1;display="Persist Image";flashimg=1
+/protect_f	    ext4	/dev/block/platform/bootdevice/by-name/protect1         flags=display="Protect";backup=1
+/protect_s	    ext4	/dev/block/platform/bootdevice/by-name/protect2         flags=backup=1;subpartitionof=/protect_f
+/nvcfg		    ext4	/dev/block/platform/bootdevice/by-name/nvcfg            flags=display="NvCfg";backup=1
+/nvdata		    ext4	/dev/block/platform/bootdevice/by-name/nvdata           flags=display="NvData";backup=1
+journey_persist      ext4     /dev/block/platform/bootdevice/by-name/journey_persist     flags=display=persist 
+#Mod lopestom about encrypt_decrypt data
+/oemkeystore		emmc	/dev/block/platform/bootdevice/by-name/oemkeystore
+/keystore		emmc	/dev/block/platform/bootdevice/by-name/keystore        
