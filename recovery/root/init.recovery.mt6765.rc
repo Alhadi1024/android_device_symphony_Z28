@@ -23,30 +23,25 @@ on post-fs
 on fs
     install_keyring
 
+service hidl_memory /system/bin/hw/android.hidl.allocator@1.0-service
+    class hal
+    user system
+    group system
+    
 
 service keystore_cli_v2 /system/bin/keystore_cli_v2
-    user root
-    group root drmpc readproc log
+    oneshot
+    user system
+    group root
     disabled
     seclabel u:r:recovery:s0
 
-service keystore /system/bin/keystore 
-    user root
-    group root drmrpc readproc log
-    disabled
-    seclabel u:r:recovery:s0
+service keystore /system/bin/keystore /data/misc/keystore
+    class main
+    user keystore
+    group keystore drmrpc readproc log
+    writepid /dev/cpuset/foreground/tasks
 
-service uncrypt /system/bin/uncrypt
-    user root
-    group root drmrpc readproc log
-    disabled
-    seclabel u:r:recovery:s0
-
-service wait_for_keymaster /system/bin/wait_for_keymaster 
-    user root
-    group root drmrpc readproc log
-    disabled
-    seclabel u:r:recovery:s0
 
 service keymaster-4-0 /vendor/bin/hw/android.hardware.keymaster@4.0-service.trustonic
     user root
@@ -60,6 +55,38 @@ service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     group root
     disabled
     seclabel u:r:recovery:s0
+  
+      service wait_for_keymaster /system/bin/wait_for_keymaster
+    user root
+    group root system
+    priority -20
+    ioprio rt 0
+    
+    service gatekeeperd /system/bin/gatekeeperd /data/misc/gatekeeper
+    class late_start
+    user system
+    writepid /dev/cpuset/system-background/tasks
+    
+    
+    service uncrypt /system/bin/uncrypt
+    class main
+    socket uncrypt stream 600 system system
+    disabled
+    oneshot
+
+service setup-bcb /system/bin/uncrypt --setup-bcb
+    class main
+    socket uncrypt stream 600 system system
+    disabled
+    oneshot
+
+service clear-bcb /system/bin/uncrypt --clear-bcb
+    class main
+    socket uncrypt stream 600 system system
+    disabled
+    oneshot
+    
+    
     
 on property:vendor.sys.listener.registered=true
     start keymaster-4-0
