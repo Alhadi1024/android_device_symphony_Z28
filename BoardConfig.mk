@@ -110,7 +110,7 @@ TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TW_USE_FSCRYPT_POLICY := 2
-TARGET_ENCRYPTED_KEY := $(DEVICE_PATH)/recovery/root/data/unencrypted/key/encrypted_key
+TARGET_KEYDIRECTORY := $(DEVICE_PATH)/recovery/root/data/unencrypted/key/encrypted_key
 
 # Recovery modules
 TARGET_RECOVERY_DEVICE_MODULES += \
