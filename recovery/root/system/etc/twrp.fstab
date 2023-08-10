@@ -14,11 +14,11 @@
 /data  f2fs   /dev/block/platform/bootdevice/by-name/userdata    noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065 wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=fs,fileencryption=aes-256-xts
 
 #Dynamic Partition 
-/system                   ext4     /dev/block/dm-1                                            flags=display=system;logical
-/vendor                   ext4     /dev/block/dm-2                                            flags=display=vendor;logical             
-/product                  ext4     /dev/block/dm-0                                            flags=display=product;logical
+/system                   ext4     /dev/block/dm-1                                            flags=display=system
+/vendor                   ext4     /dev/block/dm-2                                            flags=display=vendor           
+/product                  ext4     /dev/block/dm-0                                            flags=display=product
 
-/system		    ext4	/dev/block/mapper/system      flags=backup=1;display="System ext4"
+/system		           ext4	/dev/block/mapper/system      flags=backup=1;display="System ext4"
 /vendor             ext4        /dev/block/mapper/vendor      flags=backup=1;display="Vendor ext4"
 /product            ext4        /dev/block/mapper/product     flags=backup=1;display="Product ext4"
 # /system_image	    emmc	/dev/block/mapper/system    flags=backup=1;display="System Image";flashimg=1
