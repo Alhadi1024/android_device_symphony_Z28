@@ -1,17 +1,17 @@
 #partition             #fstype      #mountpoint   #flags
 
 #stock_fstab
-system /system ext4 ro wait,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey,
+/system ext4 system ro wait,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey,
 
-vendor /vendor ext4 ro wait,avb,logical,first_stage_mount,
+/vendor ext4 vendor ro wait,avb,logical,first_stage_mount,
 
 
-product /product ext4 ro wait,avb,logical,first_stage_mount,
+/product ext4 product ro wait,avb,logical,first_stage_mount,
 # 141 "vendor/mediatek/proprietary/hardware/fstab/mt6765/fstab.in.mt6765"
-/dev/block/platform/bootdevice/by-name/md_udc /metadata ext4 noatime,nosuid,nodev,discard wait,formattable,first_stage_mount
+/metadata ext4  /dev/block/platform/bootdevice/by-name/md_udc  noatime,nosuid,nodev,discard wait,formattable,first_stage_mount
 
 
-/dev/block/platform/bootdevice/by-name/userdata /data f2fs noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065 wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=fs,fileencryption=aes-256-xts
+/data  f2fs   /dev/block/platform/bootdevice/by-name/userdata    noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065 wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=fs,fileencryption=aes-256-xts
 
 #Dynamic Partition 
 /system                   ext4     /dev/block/dm-1                                            flags=display=system;logical
@@ -76,6 +76,7 @@ auto                      vfat     /devices/platform/mt_usb*                    
 /nvcfg		    ext4	/dev/block/platform/bootdevice/by-name/nvcfg            flags=display="NvCfg";backup=1;flashimg=1
 /nvdata		    ext4	/dev/block/platform/bootdevice/by-name/nvdata           flags=display="NvData";backup=1;flashimg=1
 /journey_persist      ext4     /dev/block/platform/bootdevice/by-name/journey_persist     flags=display="journey persist";backup=1;flashimg=1
+
 #Mod lopestom about encrypt_decrypt data
 /oemkeystore		emmc	/dev/block/platform/bootdevice/by-name/oemkeystore
 /keystore		emmc	/dev/block/platform/bootdevice/by-name/keystore    
@@ -84,3 +85,14 @@ auto                      vfat     /devices/platform/mt_usb*                    
 /tzdata  emmc  /dev/block/mapper/com.android.tzdata@296200000
 /swcodec   emmc  /dev/block/mapper/com.android.media.swcodec@331712000
 /resolv   emmc  /dev/block/mapper/com.android.resolv@331611010
+/disk   emmc   /dev/block/vold/disk:179,128
+/public  emmc   /dev/block/vold/public:179,129
+
+
+/com.android.conscrypt@331413000   emmc  /dev/block/mapper/com.android.conscrypt@331413000
+/com.android.media@331712010   emmc  /dev/block/mapper/com.android.media@331712010
+/com.android.tzdata@296200000  emmc  /dev/block/mapper/com.android.tzdata@296200000
+/com.android.media.swcodec@331712000   emmc  /dev/block/mapper/com.android.media.swcodec@331712000
+/com.android.resolv@331611010   emmc  /dev/block/mapper/com.android.resolv@331611010
+/disk:179,128   emmc   /dev/block/vold/disk:179,128
+/public:179,129  emmc   /dev/block/vold/public:179,129
