@@ -13,19 +13,29 @@
 
 /data  f2fs   /dev/block/platform/bootdevice/by-name/userdata    noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065 wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=fs,fileencryption=aes-256-xts
 
-#Dynamic Partition 
-/system                   ext4     /dev/block/dm-1                                            flags=display=system
-/vendor                   ext4     /dev/block/dm-2                                            flags=display=vendor           
-/product                  ext4     /dev/block/dm-0                                            flags=display=product
+#modified
+/data  f2fs   /dev/block/platform/bootdevice/by-name/userdata    noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065 wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v1,keydirectory=/data/uncrypted/key/encrypted_key
+/data  f2fs   /dev/block/platform/bootdevice/by-name/userdata    noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065 wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v1,keydirectory=/data/uncrypted/key
+/data  f2fs   /dev/block/platform/bootdevice/by-name/userdata    noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065 wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v1,keydirectory=/data/misc/vold/user_keys/ce/0/current/encrypted_key
+/data  f2fs   /dev/block/platform/bootdevice/by-name/userdata    noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065 wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v1,keydirectory=/data/misc/vold/user_keys/ce/0/current
+/data  f2fs   /dev/block/platform/bootdevice/by-name/userdata    noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065 wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v1,keydirectory=/data/misc/vold/user_keys/de/0/encrypted_key
+/data  f2fs   /dev/block/platform/bootdevice/by-name/userdata    noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065 wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v1,keydirectory=/data/misc/vold/user_keys/de/0
 
-/system		           ext4	/dev/block/mapper/system      flags=backup=1;display="System ext4"
+
+
+#Dynamic Partition 
+/system                   ext4     /dev/block/dm-1                                            flags=display="system";logical
+/vendor                   ext4     /dev/block/dm-2                                            flags=display="vendor";logical             
+/product                  ext4     /dev/block/dm-0                                            flags=display="product";logical
+
+/system		    ext4	/dev/block/mapper/system      flags=backup=1;display="System ext4"
 /vendor             ext4        /dev/block/mapper/vendor      flags=backup=1;display="Vendor ext4"
 /product            ext4        /dev/block/mapper/product     flags=backup=1;display="Product ext4"
 # /system_image	    emmc	/dev/block/mapper/system    flags=backup=1;display="System Image";flashimg=1
 # /vendor_image	    emmc	/dev/block/mapper/vendor    flags=backup=1;display="Vendor Image";flashimg=1
 # /product_image	    emmc	/dev/block/mapper/product   flags=backup=1;display="Product Image";flashimg=1
 
-# /super          emmc    /dev/block/platform
+# /super          emmc    /dev/block/platform/bootdevice/by-name/super   flags=backup=1;display="super";flashimg=1
                           
 /metadata                 ext4     /dev/block/platform/bootdevice/by-name/md_udc              flags=display=metadata
 /data                     f2fs     /dev/block/platform/bootdevice/by-name/userdata            flags=fileencryption=aes-256-xts
@@ -78,8 +88,7 @@ auto                      vfat     /devices/platform/mt_usb*                    
 /journey_persist      ext4     /dev/block/platform/bootdevice/by-name/journey_persist     flags=display="journey persist";backup=1;flashimg=1
 
 #Mod lopestom about encrypt_decrypt data
-/oemkeystore		emmc	/dev/block/platform/bootdevice/by-name/oemkeystore
-/keystore		emmc	/dev/block/platform/bootdevice/by-name/keystore    
+
 /conscrypt   emmc  /dev/block/mapper/com.android.conscrypt@331413000
 /media   emmc  /dev/block/mapper/com.android.media@331712010
 /tzdata  emmc  /dev/block/mapper/com.android.tzdata@296200000
