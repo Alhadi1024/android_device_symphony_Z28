@@ -92,10 +92,10 @@ TARGET_USERIMAGES_USE_F2FS := true
 # Recovery modules
 TARGET_RECOVERY_DEVICE_MODULES += \
     libkeymaster4 \
-    android.hardware.gatekeeper@1.0-impl.so/
-    gatekeeper.default.so/
-    libMcgatekeeper.so/
-    libSoftGatekeeper.so/
+    android.hardware.gatekeeper@1.0-impl.so \
+    gatekeeper.default.so \
+    libMcgatekeeper.so \
+    libSoftGatekeeper.so \
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
