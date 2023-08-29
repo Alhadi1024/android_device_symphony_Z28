@@ -96,6 +96,7 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     gatekeeper.default.so \
     libMcgatekeeper.so \
     libSoftGatekeeper.so \
+    libsoftkeymasterdevice.so \
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
@@ -108,6 +109,7 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.gatekeeper@1.0-impl.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/gatekeeper.default.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libSoftGatekeeper.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libsoftkeymasterdevice.so \
 
 
 # Security patch level
