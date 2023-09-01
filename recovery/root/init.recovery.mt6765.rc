@@ -28,6 +28,15 @@ service hidl_memory /system/bin/hw/android.hidl.allocator@1.0-service
     user system
     group system
     
+    service vold /system/bin/vold \
+        --blkid_context=u:r:blkid:s0 --blkid_untrusted_context=u:r:blkid_untrusted:s0 \
+        --fsck_context=u:r:fsck:s0 --fsck_untrusted_context=u:r:fsck_untrusted:s0
+    class core
+    ioprio be 2
+    writepid /dev/cpuset/foreground/tasks
+    shutdown critical
+    group root reserved_disk
+    
 
 service keystore_cli_v2 /system/bin/keystore_cli_v2
     oneshot
@@ -55,6 +64,18 @@ service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     group root
     disabled
     seclabel u:r:recovery:s0
+    
+    service teeregistry-1-0 /vendor/bin/hw/vendor.trustonic.teeregistry@1.0-service
+    class hal
+    user system
+    group system
+    
+    
+    service tee-1-0 /vendor/bin/hw/vendor.trustonic.tee@1.0-service
+    class hal
+    user system
+    group system
+    
   
       service wait_for_keymaster /system/bin/wait_for_keymaster
     user root

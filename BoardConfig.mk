@@ -103,14 +103,15 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
-PLATFORM_VERSION := 16.1.0
+PLATFORM_VERSION := 99.87.36
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TW_USE_FSCRYPT_POLICY := 2
-TARGET_KEYDIRECTORY := $(DEVICE_PATH)/recovery/root/data/unencrypted/key/encrypted_key
+BOARD_USES_METADATA_PARTITION := true
+TW_TARGET_KEYDIRECTORY := $(DEVICE_PATH)/recovery/root/data/unencrypted/key/encrypted_key
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi

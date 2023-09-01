@@ -55,12 +55,16 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
 
 	  # R11.1 Settings
-	  export FOX_VERSION="R12.1"
+	  export FOX_VERSION="R11.1"
 	  export OF_MAINTAINER="PowerX-NOT & Noctowl709"
 	  export FOX_BUILD_TYPE="Beta"
+	  
+	# encryption
+	export OF_DISABLE_FORCED_ENCRYPTION=1
+	export OF_DISABLE_DM_VERITY_FORCED_ENCRYPTION=1
 	
 
-       # necessary to decrypt most laurel_sprout ROMs
+       # necessary to decrypt most  ROMs
        export OF_FIX_DECRYPTION_ON_DATA_MEDIA=1
 
        # disable wrappedkey?
